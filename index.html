@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apa Nak Makan Tonight?</title>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at 50% 30%, #ff8a00, #e52e71);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        padding: 24px;
+        text-align: center;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        border-radius: 28px;
+        padding: 40px 24px;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        animation: slideIn 0.6s ease-out;
+      }
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 24px;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #ffffff 0%, #ffecd2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      button {
+        background: #ffffff;
+        color: #e52e71;
+        border: none;
+        padding: 16px 32px;
+        font-size: 1.3rem;
+        font-weight: 800;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+        box-shadow: 0 8px 25px rgba(229, 46, 113, 0.4);
+        width: 100%;
+        margin-bottom: 24px;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(229, 46, 113, 0.5);
+        background: #fff0f5;
+      }
+      button:active { transform: translateY(1px); }
+      #result {
+        min-height: 140px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .dish-text {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+        display: block;
+        animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .emoji { font-size: 4.5rem; animation: bounce 0.8s infinite alternate ease-in-out; }
+      @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } }
+      @keyframes pop { 0% { opacity: 0; transform: scale(0.6); } }
+      @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-12px); } }
+    </style>
+  </head>
+  <body>
+    <div class="card" id="dish-card">
+      <h1 id="title">Apa nak makan tonight?</h1>
+      <button id="pilih-btn">Pilih untuk saya!</button>
+      <div id="result"></div>
+    </div>
+    <script>
+      const list = [
+        {n:"Nasi Lemak", e:"🍚"}, {n:"Roti Canai", e:"🫓"}, {n:"Laksa", e:"🍜"},
+        {n:"Satay", e:"🍢"}, {n:"Mee Goreng", e:"🍝"}, {n:"Cendol", e:"🍧"},
+        {n:"Rendang", e:"🍛"}, {n:"Teh Tarik", e:"☕"}, {n:"Mee Rebus", e:"🥣"},
+        {n:"Nasi Kerabu", e:"🥗"}
+      ];
+      const btn = document.getElementById("pilih-btn");
+      const res = document.getElementById("result");
+      btn.addEventListener("click", () => {
+        const item = list[Math.floor(Math.random() * list.length)];
+        res.innerHTML = `<span class="dish-text">${item.n}</span><span class="emoji">${item.e}</span>`;
+      });
+    </script>
+  </body>
+</html>
