@@ -60,6 +60,40 @@
         background: #fff0f5;
       }
       button:active { transform: translateY(1px); }
+      .input-group {
+        text-align: left;
+        margin-bottom: 24px;
+        width: 100%;
+      }
+      .input-group label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .input-group input {
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 1.1rem;
+        border-radius: 14px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        outline: none;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+      .input-group input:focus {
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.22);
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+      }
+      .input-group input::placeholder {
+        color: rgba(255, 255, 255, 0.45);
+      }
       #result {
         min-height: 140px;
         display: flex;
@@ -68,10 +102,11 @@
         align-items: center;
       }
       .dish-text {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         font-weight: 800;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         display: block;
+        line-height: 1.3;
         animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       .emoji { font-size: 4.5rem; animation: bounce 0.8s infinite alternate ease-in-out; }
@@ -83,6 +118,10 @@
   <body>
     <div class="card" id="dish-card">
       <h1 id="title">Apa nak makan tonight?</h1>
+      <div class="input-group">
+        <label for="name-input">Sila masukkan nama anda</label>
+        <input type="text" id="name-input" placeholder="Masukkan nama di sini..." required>
+      </div>
       <button id="pilih-btn">Pilih untuk saya!</button>
       <div id="result"></div>
     </div>
@@ -95,9 +134,12 @@
       ];
       const btn = document.getElementById("pilih-btn");
       const res = document.getElementById("result");
+      const nameInput = document.getElementById("name-input");
+      
       btn.addEventListener("click", () => {
+        const name = nameInput.value.trim() || "Kawan";
         const item = list[Math.floor(Math.random() * list.length)];
-        res.innerHTML = `<span class="dish-text">${item.n}</span><span class="emoji">${item.e}</span>`;
+        res.innerHTML = `<span class="dish-text">${name} patut makan ${item.n}</span><span class="emoji">${item.e}</span>`;
       });
     </script>
   </body>
